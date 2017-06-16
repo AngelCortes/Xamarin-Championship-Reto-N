@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
 using RetoN;
 using Gcm.Client;
+using RetoN.Services;
 
 
 #if OFFLINE_SYNC_ENABLED
@@ -108,6 +109,16 @@ namespace RetoN
             GcmClient.CheckManifest(this);
             // Register the app for push notifications. 
             GcmClient.Register(this, ToDoBroadcastReceiver.senderIDs);
+
+            ServiceHelper serviceHelper = new ServiceHelper();
+            string AndroidId = Android.Provider.Settings.Secure.GetString(ContentResolver, Android.Provider.Settings.Secure.AndroidId);
+
+            var retoN = "RetoN+83d2d+https://github.com/AngelCortes/Xamarin-Championship-Reto-N";
+             
+            //Toast.MakeText(this, "Enviando tu registro", ToastLength.Short).Show();
+            //await serviceHelper.InsertarEntidad("angel.edcor@outlook.com", retoN, AndroidId);
+            //Toast.MakeText(this, "Gracias por registrarte", ToastLength.Long).Show();
+
 
             // Load the items from the mobile app backend.
             OnRefreshItemsSelected();
